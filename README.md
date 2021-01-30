@@ -1,4 +1,4 @@
-# Neovim Setup by Andrzej Stachlewski
+# Neovim Setup by KUMA Andrzej Stachlewski
 
 ## Prerequisits
 * Neovim 5.X
