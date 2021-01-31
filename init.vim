@@ -61,12 +61,16 @@ Plug 'szw/vim-maximizer'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Surround
 Plug 'tpope/vim-surround'
 
 " File tree
 Plug 'preservim/nerdtree'
+
+" Show indentations
+Plug 'Yggdroot/indentLine'
 
 " Code completion and language specific development tools
 Plug 'neovim/nvim-lspconfig'
@@ -142,6 +146,9 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <leader>` :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+" Git
+nnoremap <leader>gs :Git status<CR>
+
 " Ctrl+s to save
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
@@ -164,3 +171,8 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 150})
 augroup END
 
+" On reopening a file jump to the last position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
