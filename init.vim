@@ -62,6 +62,12 @@ Plug 'szw/vim-maximizer'
 " Git
 Plug 'tpope/vim-fugitive'
 
+" Surround
+Plug 'tpope/vim-surround'
+
+" File tree
+Plug 'preservim/nerdtree'
+
 " Code completion and language specific development tools
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
@@ -78,6 +84,15 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 " Backup theme
 Plug 'gruvbox-community/gruvbox'
 call plug#end()
+
+" Telescope config
+lua << EOF
+require('telescope').setup{
+     defaults = {
+        file_ignore_patterns = { "node_modules/*", "build/*" }
+     }
+}
+EOF
 
 " Language configs
 " -- Go
@@ -117,7 +132,16 @@ colorscheme dracula
 
 " Remaps and keybindings
 let mapleader = " "
+" Telescop
 nnoremap <leader>p <cmd>Telescope find_files<CR>
+nnoremap <leader>f <cmd>Telescope live_grep<CR>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
+nnoremap <leader>c <cmd>Telescope command_history<CR>
+" Nerdtree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>` :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 " Ctrl+s to save
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
